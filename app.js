@@ -1,9 +1,8 @@
-const express = require('express')
-const app = express()
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const methodOverride = require('method-override');
+const express = require('express');
 const exphbs = require('express-handlebars');
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
+const app = express();
 const controller = require('./controllers/controller');
 
 app.use(bodyParser.urlencoded({ extended: true }));
