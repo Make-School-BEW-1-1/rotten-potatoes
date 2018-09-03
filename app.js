@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const exphbs = require('express-handlebars');
-const controller = require('./controllers/controller');
+const controller = require('./controllers/controller.js');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
