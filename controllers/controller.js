@@ -70,4 +70,14 @@ module.exports = function(app) {
           })
       })
 
+      app.delete('/reviews/comments/:id', function(req, res) {
+          console.log("DELETE comment")
+          Comment.findByIdAndRemove(req.params.id).then((comment) => {
+              console.log(comment._reviewId);
+              res.redirect(`/reviews/${comment.reviewId}`);
+          }).catch((err) => {
+              console.log(err.message);
+          })
+      })
+
   }
