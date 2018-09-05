@@ -1,15 +1,16 @@
 const Review = require('../model/review')
+const Comment = require('../model/comment.js')
 
 module.exports = function(app) {
-// GET: View all reviews
-    app.get('/', (req, res) => {
-          Review.find()
-          .then(rvws => {
-              res.render('reviews-index', {reviews: rvws});
-          }).catch(error => {
-              console.log(error);
-          });
-      });
+// // GET: View all reviews
+//     app.get('/', (req, res) => {
+//           Review.find()
+//           .then(rvws => {
+//               res.render('reviews-index', {reviews: rvws});
+//           }).catch(error => {
+//               console.log(error);
+//           });
+//       });
 
 // GET: View form for new review
       app.get('/reviews/new', (req, res) => {
