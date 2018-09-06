@@ -3,6 +3,8 @@ const api_key = process.env.APIKEY;
 const MovieDb = require('moviedb-promise');
 const moviedb = new MovieDb(api_key)
 
+const Review = require('../model/review')
+
 module.exports = function(app) {
     app.get('/', (req, res) => {
         moviedb.miscNowPlayingMovies().then(response => {
@@ -23,7 +25,10 @@ module.exports = function(app) {
             }
 
             function renderTemplate(movie) {
-                res.render('movies-show', { movie: movie});
+                Review.find({ movieId: req.params.id }).then(reviews => {
+                    console.log(reviews);
+                    res.render('movies-show', { movie: movie, reviews: reviews });
+                })
             }
         }).catch(console.error)
     })

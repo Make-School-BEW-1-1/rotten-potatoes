@@ -1,3 +1,7 @@
+<div class="text-right">
+    <a href="/movies/{{movie.id}}/reviews/new" class="btn btn-primary">Write Review</a>
+</div>
+
 <div class="row">
     <div class="col-sm-4">
         <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="img-responsive">
@@ -10,3 +14,10 @@
         </div>
     </div>
 </div>
+
+<hr>
+
+<h3>Reviews</h3>
+{{#each reviews}}
+    {{> review}}
+{{/each}}
