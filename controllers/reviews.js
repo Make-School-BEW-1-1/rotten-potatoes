@@ -1,4 +1,5 @@
 const Review = require('../model/review')
+const Comment = require('../model/comment')
 
 module.exports = function(app) {
 // GET: View all reviews
