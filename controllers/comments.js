@@ -4,11 +4,13 @@ module.exports = function(app) {
 
 // POST: Create new comment
       app.post('/reviews/comments', (req, res) => {
-          Comment.create(req.body).then(comment => {
-              res.redirect(`/reviews/${comment.reviewId}`)
-          }).catch((err) => {
-              console.log(err.message)
-          })
+          console.log(req);
+          // Comment.create(req.body).then(comment => {
+          //     res.status(200).send({ comment: comment });
+          // }).catch((err) => {
+          //     res.status(400).send({ err: err })
+          //     console.log("Could not create new comment");
+          // })
       })
 
 // Delete a single comment
