@@ -4,6 +4,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes
 module.exports = mongoose.model('Review', {
     title: String,
     movieTitle: String,
-    description: String
+    description: String,
+    movieId: { type: String, required: true }
 });
 // this is a comment

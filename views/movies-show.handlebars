@@ -1,0 +1,23 @@
+<div class="text-right">
+    <a href="/movies/{{movie.id}}/reviews/new" class="btn btn-primary">Write Review</a>
+</div>
+
+<div class="row">
+    <div class="col-sm-4">
+        <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="img-responsive">
+    </div>
+    <div class="col-sm-4">
+        <h1>{{movie.title}}</h1>
+        <p class="lead">{{movie.overview}}</p>
+        <div class="embed-responsive embed-responsive-21by9">
+            <iframe src="https://www.youtube.com/embed/{{movie.trailer_youtube_id}}?rel=0" frameborder="0" class="embed-responsive-item"></iframe>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<h3>Reviews</h3>
+{{#each reviews}}
+    {{> review}}
+{{/each}}

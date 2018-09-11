@@ -1,11 +1,10 @@
-<a href="/">Back to Home</a>
 <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
 <h1>{{review.title}}</h1>
 <h2>{{review.movieTitle}}</h2>
 <p>{{review.description}}</p>
-<p><a href="/reviews/{{review._id}}/edit">Edit</a></p>
-<p><form action="/reviews/{{review.id}}?_method=DELETE" method="POST">
+<p><a href="/movies/{{review.movieId}}/reviews/{{review._id}}/edit">Edit</a></p>
+<p><form action="/movies/{{review.movieId}}/reviews/{{review.id}}?_method=DELETE" method="POST">
         <button type="submit">Delete</button>
     </form></p>
 
@@ -15,8 +14,10 @@
 
     <hr>
 
-    {{#each comments}}
-        {{> comment}}
-    {{/each}}
+    <div id="comments">
+        {{#each comments}}
+            {{> comment}}
+        {{/each}}
+    </div>
     </div>
 </div>
