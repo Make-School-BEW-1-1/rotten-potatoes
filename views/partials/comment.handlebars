@@ -3,7 +3,7 @@
         <h4 class="card-title">{{this.title}}</h4>
         <p class="card-text">{{this.content}}</p>
 
-        <p><form class="" action="/reviews/comments/{{this.id}}?_method=DELETE" method="POST">
+        <p><form class="" action="/reviews/{{this.reviewId}}/comments/{{this.id}}?_method=DELETE" method="POST">
             <button type="submit" class="btn btn-link">Delete</button>
         </form></p>
     </div>

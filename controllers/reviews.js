@@ -51,10 +51,10 @@ module.exports = function(app) {
       });
 
 // PUT: Edit a review
-      app.put('/reviews/:id', (req, res) => {
+      app.put('/movies/:movieId/reviews/:id', (req, res) => {
           Review.findByIdAndUpdate(req.params.id, req.body)
           .then(review => {
-              res.redirect(`/movies/${review.movieId}`);
+              res.redirect(`/movies/${req.params.movieId}`);
           }).catch(error => {
               console.log(error);
           });
