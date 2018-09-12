@@ -12,68 +12,58 @@ document.getElementById("newComment").addEventListener("submit", e => {
 
     let data = {};
     for (let v of commentForm) {
-        console.log(v);
         data[v[0]] = v[1];
     }
 
     // console.log("Constructed data: " + JSON.stringify(data));
 
     axios.post('/reviews/:reviewId/comments', data)
-        .then(function (response) {
-            // console.log("Response: " + JSON.stringify(response));
-
+        .then(function(response) {
             document.getElementById("newComment").reset();
-
-            console.log("reviewId: " + response.data.comment.reviewId);
+            // console.log("Create comment response: " + JSON.stringify(response));
 
             $('#comments').prepend(
                 `
-                <div class="card">
+                <div class="card" id="${response.data.comment._id}">
                     <div class="card-block">
                         <h4 class="card-title">${response.data.comment.title}</h4>
                         <p class="card-text">${response.data.comment.content}</p>
                         <p>
-                            <form method="POST" action="/reviews/${response.data.comment.reviewId}/comments/${response.data.comment._id}?_method=DELETE">
-                                <button class="btn btn-link" type="submit">Delete</button>
-                            </form>
+                            <button class="btn btn-link deleteComment" data-review-id="${response.data.comment.reviewId}" data-comment-id="${response.data.comment._id}">Delete</button>
                         </p>
                     </div>
                 </div>
                 `
             )
+
+            addListener();
         })
-        .catch(function (error) {
+        .catch(function(error) {
             console.log(error);
             alert('There was a problem saving your comment. Please try again.')
         });
-    })
+})
 
-    // console.log(comment.get('title'));
-    // axios.post('/reviews/comments', comment)
-    // .then(function (response) {
-    //     document.getElementById("newComment").reset();
-    //     $('#comments').prepend(
-    //         `
-    //         <div class="card">
-    //             <div class="card-block">
-    //                 <h4 class="card-title">${response.title}</h4>
-    //                 <p class="card-text">${response.content}</p>
-    //                 <p>
-    //                     <form method="POST" action="/reviews/comments/${response._id}?_method=DELETE">
-    //                         <button class="btn btn-link" type="submit">Delete</button>
-    //                     </form>
-    //                 </p>
-    //             </div>
-    //         </div>
-    //         `
-    //     );
-    //     // $('#comments').prepend("<h1>Test</h1>");
-    //
-    // })
-    // .catch(function (error) {
-    //     console.log(error);
-    //     alert('There was a problem saving your comment. Please try again.')
-    // });
+window.onload = addListener();
 
-
-            // $('#comments').prepend("<h1>Test</h1>");
+function addListener() {
+    const delBtn = document.querySelectorAll('.deleteComment');
+    delBtn.forEach(elem => {
+        console.log('adding listener')
+            elem.addEventListener('click', (e) => {
+            console.log("click!");
+            let commentId = elem.getAttribute('data-comment-id');
+            let reviewId = elem.getAttribute('data-review-id');
+            axios.delete(`/reviews/${reviewId}/comments/${commentId}`)
+            .then(response => {
+                // console.log("delete comment response: " + JSON.stringify(response));
+                let comment = document.getElementById(commentId);
+                comment.parentNode.removeChild(comment);
+            })
+            .catch(error => {
+                console.log(error);
+                alert('There was an error deleting this comment.')
+            });
+        })
+    });
+}

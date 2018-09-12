@@ -1,10 +1,10 @@
-<div class="card">
+<div class="card" id="{{this._id}}">
     <div class="card-block">
         <h4 class="card-title">{{this.title}}</h4>
         <p class="card-text">{{this.content}}</p>
 
-        <p><form class="" action="/reviews/{{this.reviewId}}/comments/{{this.id}}?_method=DELETE" method="POST">
-            <button type="submit" class="btn btn-link">Delete</button>
-        </form></p>
+        <p>
+            <button class="btn btn-link deleteComment" data-review-id="{{this.reviewId}}" data-comment-id="{{this._id}}">Delete</button>
+        </p>
     </div>
 </div>

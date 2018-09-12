@@ -15,13 +15,11 @@ module.exports = function(app) {
 
 // Delete a single comment
       app.delete('/reviews/:reviewId/comments/:id', function(req, res) {
-          console.log("DELETE comment")
-          const review = Review.findById(req.params.reviewID);
+          // console.log("DELETE comment")
           Comment.findByIdAndRemove(req.params.id).then((comment) => {
-              console.log(comment._reviewId);
-              res.redirect(`/movies/${review.movieId}/reviews/${comment.reviewId}`);
+              res.status(200).send(comment);
           }).catch((err) => {
-              console.log(err.message);
+              res.status(400).send(err)
           })
       })
   }
