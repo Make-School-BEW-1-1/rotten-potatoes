@@ -7,6 +7,7 @@ const app = express();
 const reviews = require('./controllers/reviews');
 const comments = require('./controllers/comments')
 const movies = require('./controllers/movies')
+const admins = require('./controllers/admins')
 
 const port = process.env.PORT || 5000;
 
@@ -20,6 +21,7 @@ app.use(express.static('public'));
 movies(app);
 reviews(app);
 comments(app);
+admins(app);
 
 
 app.listen(port, () => {

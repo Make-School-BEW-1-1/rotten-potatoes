@@ -19,7 +19,7 @@ module.exports = function(app) {
 
 // POST: Create a new review
       app.post('/movies/:movieId/reviews', (req, res) => {
-          console.log(req.body);
+          // console.log(req.body);
           Review.create(req.body)
           .then(review => {
               res.redirect(`/movies/${review.movieId}`);
